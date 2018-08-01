@@ -423,4 +423,40 @@ def margin_balance(symbol):
 
 
 if __name__ == '__main__':
-    print (get_symbols())
+    #print (get_symbols())
+    data = get_kline('eosbtc','1day',100)
+    #print(data['data'])
+    for item in data['data']:
+        # K线id  
+        var_id      = item['id']
+        # 开盘价
+        var_open    = item['open']
+        # 收盘价,当K线为最晚的一根时，是最新成交价
+        var_close   = item['close']
+        # 最低价
+        var_low     = item['low']
+        # 最高价
+        var_high    = item['high']
+        # 成交量
+        var_amount  = item['amount']
+        # 成交笔数
+        var_count   = item['count']
+        # 成交额, 即 sum(每一笔成交价 * 该笔的成交量)
+        var_vol     = item['vol']
+
+        print(var_id)
+        timeArray = time.localtime(var_id)
+        timeStr = time.strftime('%Y-%m-%d %H:%M:%S',timeArray)
+        print(timeStr)
+        #break;
+        
+        print("open:%s,close:%s" %(var_open,var_close))
+        #pirnt("")
+        #print(item)
+    timeArray = time.localtime(time.time())
+    timeStr   = time.strftime('%Y-%m-%d %H:%M:%S',timeArray)
+    print(timeStr)
+    
+
+
+
